@@ -4,7 +4,7 @@
       <pdf ref="pdfCanvas" @loaded="pdfLoaded" :src="pdfUrl"></pdf>
     </div>
     <v-container fluid>
-      <v-col cols="12" md="12"
+      <v-col cols="12" md="12" v-if="!cameraRunning"
         ><h3>{{ $t("startupGuide") }}</h3></v-col
       >
       <v-row>
