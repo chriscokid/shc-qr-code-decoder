@@ -32,9 +32,9 @@ Application web statique **non-officielle** pour décoder et vérifier l'authent
 - Completely static, no server, no sending data outside the browser
 - Designed for use by mobiles (Android, iOS), tablets and PC / Mac
 - Can read QR codes from:
-	- The ** cell phone camera **
-	- The ** PNG **, ** JPEG **
-	- ** PDF ** with a QR code on the first page
+	- The **cell phone camera**
+	- The **PNG**, **JPEG**
+	- **PDF** with a QR code on the first page
 - Displays different states for the QR codes read:
 	- A green message if the person has received two doses
 	- An orange message if the person has received a dose
