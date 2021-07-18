@@ -108,12 +108,12 @@ export class VaccineEvent {
 
 //Given a json payload of an vaccine entry, returns a VaccineEvent
 function parseVaccineEvent(jsonPayload) {
-    let location = jsonPayload.location.display;
+    let location = jsonPayload.location?.display;
     let lotNumber = jsonPayload.lotNumber;
-    let type = jsonPayload.note[0].text;
+    let type = jsonPayload.note?.[0]?.text;
     let date = jsonPayload.occurrenceDateTime;
-    let patientRef = jsonPayload.patient.reference;
-    let doseNumber = jsonPayload.protocolApplied.doseNumber;
+    let patientRef = jsonPayload.patient?.reference;
+    let doseNumber = jsonPayload.protocolApplied?.doseNumber;
     return new VaccineEvent(date, location, type, lotNumber, patientRef, doseNumber);
 }
 
@@ -121,8 +121,8 @@ function parseVaccineEvent(jsonPayload) {
 function parsePatient(jsonPayload) {
     let birthDate = jsonPayload.birthDate;
     let gender = jsonPayload.gender;
-    let familyName = jsonPayload.name[0].family[0];
-    let givenName = jsonPayload.name[0].given[0];
+    let familyName = jsonPayload.name?.[0]?.family?.[0];
+    let givenName = jsonPayload.name?.[0]?.given?.[0];
     let patient = new Patient(birthDate, gender, familyName, givenName, []);
     return patient;
 }

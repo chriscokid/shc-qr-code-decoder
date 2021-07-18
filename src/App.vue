@@ -63,7 +63,8 @@
               >{{ $t("sourceCode") }}</a
             >
           </div>
-          <div>{{ $t("supportAndContact") }}: contact@checkmonvax.net</div>
+          <div><span class="text-decoration-underline">{{ $t("supportAndContact") }}:</span> contact@checkmonvax.net</div>
+          <div class="mt-3">Proudly hosted on GitHub</div>
         </v-col>
       </v-row>
     </v-footer>
