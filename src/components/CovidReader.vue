@@ -10,7 +10,7 @@
       <v-row>
         <v-col
           cols="12"
-          :md="latestEntries.length != 0 || videoRunning ? 6 : 12"
+          :md="latestEntries.length != 0 || cameraRunning ? 6 : 12"
           class="d-flex align-stretch"
         >
           <div class="video-container d-flex align-stretch">
@@ -19,11 +19,16 @@
               id="qrVideo"
             >
               <qrcode-stream
-                v-if="videoRunning"
+                v-if="cameraRunning"
                 :track="paintQROutline"
                 @init="onCameraInit"
                 @decode="handleQRCode"
               >
+                <div class="camera-button-group">
+                  <v-btn class="mx-2" fab dark small @click="stopCamera()">
+                    <v-icon dark> mdi-menu-left </v-icon>
+                  </v-btn>
+                </div>
                 <div
                   class="d-flex align-center justify-center"
                   style="height: 100%"
@@ -37,9 +42,9 @@
                 </div>
               </qrcode-stream>
             </div>
-            <div class="center-full" v-if="!videoRunning">
+            <div class="center-full" v-if="!cameraRunning">
               <v-btn
-                v-if="!videoRunning"
+                v-if="!cameraRunning"
                 outlined
                 block
                 class="text--center"
@@ -63,16 +68,17 @@
         </v-col>
         <v-col
           cols="12"
-          :md="latestEntries.length != 0 || videoRunning ? 6 : 12"
+          :md="latestEntries.length != 0 || cameraRunning ? 6 : 12"
           id="#results"
         >
           <VaccinePatient
             v-if="latestEntries.length != 0"
             :patients="latestEntries"
             :rawData="latestEntriesRaw"
+            :dataValidated="dataValidated"
           />
           <div
-            v-else-if="videoRunning && latestEntries.length == 0"
+            v-else-if="cameraRunning && latestEntries.length == 0"
             class="fill-height"
           >
             <v-card

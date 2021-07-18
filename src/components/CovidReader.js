@@ -9,10 +9,11 @@ export default {
     name: 'CovidReader',
     data() {
         return {
-            videoRunning: false,
+            cameraRunning: false,
             cameraLoading: false,
             latestEntries: [],
             latestEntriesRaw: null,
+            dataValidated: false,
             manualQrImport: null,
             pdfUrl: null
         }
@@ -24,7 +25,10 @@ export default {
     },
     methods: {
         //A method to start the camera
-        setupCamera() { this.videoRunning = true; },
+        setupCamera() { this.cameraRunning = true; },
+        stopCamera() {
+            this.cameraRunning = false;
+        },
         //Handles the QR code from imageData object (canvas generated image)
         handleQRFromImageData(imageData) {
             //Try to decode QR
@@ -59,8 +63,10 @@ export default {
             //Check the authenticity of the JWS
             if (!(await checkJWSAuthencity(jws))) {
                 this.raiseError("authenticityCouldNotBeVerified");
+                this.dataValidated = false;
                 console.log("Could not validate the authenticity of the JWS against the public key");
-                return;
+            } else {
+                this.dataValidated = true;
             }
 
             //Gather the entries
@@ -81,7 +87,6 @@ export default {
             //Wait a few for the vue to update
             await new Promise(r => setTimeout(r, 100));
             var div = document.getElementById('#results');
-            console.log(div);
             div.scrollIntoView({ behavior: 'smooth', block: 'end' });
         },
         // Entrypoint to handle images and PDFs

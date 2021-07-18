@@ -4,6 +4,7 @@
     "waitingQRCode": "Waiting for a QR Code ...",
     "or": "Or",
     "verifiedQRCode": "Verified QR Code",
+    "nonVerifiedQRCode":"Could not verify the authenticity of this QR Code",
     "born": "Born",
     "receivedDoses": "Received {dosesCount} doses",
     "doses": "Doses",

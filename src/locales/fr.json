@@ -4,6 +4,7 @@
     "waitingQRCode": "En attente d'un code QR ...",
     "or": "Ou",
     "verifiedQRCode": "Code QR vérifié",
+    "nonVerifiedQRCode":"Impossible de valider l'authenticité de ce QR Code",
     "born": "Né le",
     "receivedDoses": "À reçu {dosesCount} doses ",
     "doses": "Doses",

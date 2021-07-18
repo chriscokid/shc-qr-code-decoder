@@ -5,12 +5,13 @@ export default {
     data() {
         return {
             showRawDataDialog: false,
-            showValidationDialog: false
+            showValidationDialog: false,
         }
     },
     props: {
         patients: [],
-        rawData: null
+        rawData: null,
+        dataValidated: false,
     },
     methods: {
     },

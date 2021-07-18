@@ -4,8 +4,15 @@
       <v-card class="mx-auto" outlined>
         <v-list-item three-line>
           <v-list-item-content>
-            <div class="text-overline mb-4">
-              {{ $t("verifiedQRCode") }}
+            <div class="text-overline mb-4 text-wrap">
+              <span v-if="dataValidated">
+                {{ $t("verifiedQRCode") }}
+              </span>
+              <span v-else>
+                <v-chip class="ma-2" color="red" text-color="white">
+                  {{ $t("nonVerifiedQRCode") }}
+                </v-chip>
+              </span>
               <v-btn
                 width="20"
                 height="20"
@@ -42,7 +49,7 @@
             <font-awesome-icon
               icon="check"
               size="lg"
-              :color="patient.vaccineEvents.length >= 2 ? 'green' : 'orange'"
+              :color="dataValidated && patient.vaccineEvents.length >= 2 ? 'green' : 'orange'"
               transition="scale-transition"
               fixed-width
           /></v-list-item-avatar>
