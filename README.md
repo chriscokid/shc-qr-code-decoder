@@ -1,4 +1,4 @@
-# Québec COVID QR Code Decoder (Check mon vax)
+# Québec COVID QR Code Decoder / Reader (Check mon vax)
 
 Application web statique **non-officielle** pour décoder et vérifier l'authenticité des QR codes envoyés au Québec après l'administration d'un des vaccins Covid 19.
 
