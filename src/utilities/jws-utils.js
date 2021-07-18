@@ -35,10 +35,9 @@ export async function decompressJWSPayload(jws) {
         //Take the second part of the JWS (payload)
         const payload = jws.split(".")[1];
         const decodedPayload = Buffer.from(payload, "base64");
+        
         //Decompress using zlib (async overlay)
-        var result = null;
-
-        await new Promise((resolve, reject) => {
+        let result = await new Promise((resolve, reject) => {
             zlib.inflateRaw(decodedPayload, (err, res) => {
                 result = res;
                 if (err) {
@@ -50,6 +49,7 @@ export async function decompressJWSPayload(jws) {
                 }
             });
         });
+        
         //Otherwise returns the decoded json result 
         return result.toString("utf8");
     } catch {
