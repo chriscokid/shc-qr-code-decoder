@@ -4,7 +4,8 @@ import { parseJWSFromQRString, decompressJWSPayload, formatVaccineEntries, check
 import { imageDataFromSource, getImageData } from "../utilities/image-utils"
 import pdf from 'vue-pdf'
 import { QrcodeStream } from 'vue-qrcode-reader'
-
+import successSound from '../assets/success.wav'
+import errorSound from '../assets/error.wav'
 export default {
     name: 'CovidReader',
     data() {
@@ -25,7 +26,9 @@ export default {
     },
     methods: {
         //A method to start the camera
-        setupCamera() { this.cameraRunning = true; },
+        setupCamera() {
+            this.cameraRunning = true;
+        },
         stopCamera() {
             this.cameraRunning = false;
         },
@@ -50,6 +53,7 @@ export default {
             let jws = parseJWSFromQRString(shcString);
             if (jws == null || jws == undefined) {
                 this.raiseError("invalidQRCode");
+                this.playError();
                 return;
             }
 
@@ -57,15 +61,18 @@ export default {
             let payload = await decompressJWSPayload(jws);
             if (payload == null || payload == undefined) {
                 this.raiseError("invalidQRCode");
+                this.playError();
                 return;
             }
 
             //Check the authenticity of the JWS
             if (!(await checkJWSAuthencity(jws))) {
                 this.raiseError("authenticityCouldNotBeVerified");
+                this.playError();
                 this.dataValidated = false;
                 console.log("Could not validate the authenticity of the JWS against the public key");
             } else {
+                this.playSuccess();
                 this.dataValidated = true;
             }
 
@@ -162,6 +169,14 @@ export default {
             finally {
                 this.cameraLoading = false;
             }
+        },
+        async playSuccess() {
+            let audio = new Audio(successSound);
+            audio.play();
+        },
+        async playError() {
+            let audio = new Audio(errorSound);
+            audio.play();
         },
         switchCamera() {
             switch (this.camera) {
