@@ -26,7 +26,7 @@
     "fr": "Français",
     "loadQRData":"QR code (PNG, JPEG, PDF)",
     "privacySecurityNotice":"Notice sur la sécurité des données et la vie privée",
-    "startupGuide":"Cette application permet de lire les QR code de vaccination COVID-19 du Québec. Pour commencer, scannez un QR code avec votre webcam ou chargez un fichier image ou PDF.",
+    "startupGuide":"Cette application permet de lire les codes QR de vaccination COVID-19 du Québec. Pour commencer, scannez un QR code avec votre webcam ou chargez un fichier image ou PDF.",
     "securityNotice1":"Cette application n'est pas officielle",
     "securityNotice2":"Cette application fonctionne côté client (site web statique), ce qui signifie que les données que vous chargez ne sont PAS envoyées à un serveur ou à un tiers.",
     "securityNotice3":"Vous devez avoir le consentement explicite du/des propriétaire(s) des QR code(s) que vous lisez.",

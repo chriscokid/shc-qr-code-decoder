@@ -16,7 +16,8 @@ export default {
             latestEntriesRaw: null,
             dataValidated: false,
             manualQrImport: null,
-            pdfUrl: null
+            pdfUrl: null,
+            pdfLoading: false
         }
     },
     components: {
@@ -33,7 +34,7 @@ export default {
             this.cameraRunning = false;
         },
         //Handles the QR code from imageData object (canvas generated image)
-        handleQRFromImageData(imageData) {
+        handleQRFromImageData(imageData, allowRaiseError = true) {
             //Try to decode QR
             let qr = jsQR(
                 new Uint8ClampedArray(imageData.data.buffer),
@@ -41,11 +42,14 @@ export default {
                 imageData.height)
 
             if (qr == null || qr.data == null || qr == undefined || qr.data == undefined) {
-                this.raiseError("invalidQRCode");
-                return;
+                if (allowRaiseError) {
+                    this.raiseError("invalidQRCode");
+                }
+                return false;
             }
 
             this.handleQRCode(qr.data);
+            return true;
         },
         //The function to load the proof of vaccination given an extracted SHC string of the form (shc://abc123)
         async handleQRCode(shcString) {
@@ -116,12 +120,35 @@ export default {
             }
         },
         //Even trigerred when a PDF has been loaded
+        //This function is tricky. For some strange reason, the PDF is not really loaded when the event is trigerred
+        //Probably because of the time the textures takes to be shown in the canvas
+        //To tackle that, we retry to import the PDF until we succeed
+        //This is not perfect, but the terminaison is garanteed
         async pdfLoaded() {
-            let pdfRenderCanvas = document.getElementById('pdfContainer').querySelector('canvas');
-            await new Promise(r => setTimeout(r, 300));
-            let imageData = getImageData(pdfRenderCanvas);
-            if (imageData != null && imageData != undefined)
-                await this.handleQRFromImageData(imageData);
+            //Notices the pdf is loading
+            this.pdfLoading = true;
+
+            //Do 10 retry spaced of 300ms each
+            let retryCount = 10;
+            let retryTimeout = 300;
+
+            for (let retry = 0; retry < retryCount; retry++) {
+                let pdfRenderCanvas = document.getElementById('pdfContainer').querySelector('canvas');
+                let imageData = getImageData(pdfRenderCanvas);
+                if (imageData != null && imageData != undefined) {
+                    let couldReadPdf = await this.handleQRFromImageData(imageData, false);
+                    if (couldReadPdf) {
+                        this.pdfUrl = null
+                        this.pdfLoading = false;
+                        return;
+                    }
+                }
+                await new Promise(r => setTimeout(r, retryTimeout));
+            }
+
+            //If after 5 retries, the pdf could not be loaded, we raise a notificatrion
+            this.raiseError("invalidQRCode");
+            this.pdfLoading = false;
         },
         //Paints an outline of the view for the QR code
         paintQROutline(detectedCodes, ctx) {

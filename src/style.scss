@@ -17,6 +17,7 @@
 .center-full{
     position: absolute;
     min-width:50%;
+    min-width: 280px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,6 +28,9 @@
 }
 
 .pdf-container{
+    //We put a min resolution for the PDF to be rendered in, otherwise it won't be readable
+    min-width:1000px;
+    
     //Untrusworthy tweak to replace display none, as display none blocks the PDF from rendering
     visibility: hidden;
     position: absolute;

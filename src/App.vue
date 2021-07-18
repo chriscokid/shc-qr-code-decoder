@@ -9,7 +9,7 @@
           spin
           fixed-width
         />
-        <div class="ml-3 text-sm-h6">Check Mon Vax</div>
+        <div class="ml-3 text-sm-h6">CHECK MON VAX</div>
       </div>
 
       <v-spacer></v-spacer>
@@ -17,7 +17,7 @@
       <div class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn rounded class="px-12" dark v-bind="attrs" v-on="on">
+            <v-btn rounded class="px-8" dark v-bind="attrs" v-on="on">
               {{ $t($i18n.locale) }}
             </v-btn>
           </template>
@@ -59,7 +59,7 @@
           <div>
             <a
               class="white--text"
-              href="https://github.com/ponahoum/Quebec-Covid-Vaccine-Checker"
+              href="https://github.com/ponahoum/Quebec-covid-19-qr-code-decoder"
               >{{ $t("sourceCode") }}</a
             >
           </div>

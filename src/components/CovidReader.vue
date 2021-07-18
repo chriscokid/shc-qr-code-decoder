@@ -63,6 +63,11 @@
                 accept="application/pdf, image/*"
                 :label="$t('loadQRData')"
               ></v-file-input>
+              <v-progress-linear
+                indeterminate
+                color="primary"
+                v-if="pdfLoading"
+              ></v-progress-linear>
             </div>
           </div>
         </v-col>
