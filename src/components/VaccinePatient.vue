@@ -32,7 +32,7 @@
             </v-list-item-title>
             <v-list-item-subtitle>
               <div>
-                {{ $t(patient.gender == undefined ? '': patient.gender.toLowerCase()+', ') }} {{ $t("born") }}
+                {{ patient.gender == undefined ? '': $t(patient.gender.toLowerCase())+', ' }} {{ $t("born") }}
                 {{ patient.birthDate }}
               </div>
               <div>
