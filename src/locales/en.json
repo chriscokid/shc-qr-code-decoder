@@ -35,7 +35,7 @@
     "supportAndContact":"Contact",
     "invalidQRCode":"Invalid QR Code",
     "authenticityCouldNotBeVerified":"Authenticity of the QR code could not be verified",
-    "validQRCode":"Valid QR Code!",
+    "validQRCode":"QR code decoded!",
     "followingPublicKeyVerified":"The provided QR code has been verified against the following public key",
     "qrCodeValidationInformation":"QR code authenticity verification",
     "moreProtocolInformation":"For more information about the signing protocol click here"

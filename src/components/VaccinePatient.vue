@@ -10,7 +10,7 @@
               </span>
               <span v-else>
                 <v-chip class="ma-2" color="red" text-color="white">
-                  {{ $t("nonVerifiedQRCode") }}
+                  <h6>{{ $t("nonVerifiedQRCode") }}</h6>
                 </v-chip>
               </span>
               <v-btn
@@ -32,7 +32,7 @@
             </v-list-item-title>
             <v-list-item-subtitle>
               <div>
-                {{ $t(patient.gender.toLowerCase()) }}, {{ $t("born") }}
+                {{ $t(patient.gender == undefined ? '': patient.gender.toLowerCase()+', ') }} {{ $t("born") }}
                 {{ patient.birthDate }}
               </div>
               <div>
