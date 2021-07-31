@@ -17,7 +17,7 @@ Application web statique **non-officielle** pour décoder et vérifier l'authent
 	- Les **PNG**, **JPEG**
 	- Les **PDF** avec un QR code sur la première page
 - Affiche différents états pour les QR codes lus :
-	- Un message vert si la personne a reçu deux dose
+	- Un message vert si la personne a reçu deux doses
 	- Un message orange si la personne a reçu une dose
 	- Un message d'erreur si l'authenticité du QR Code n'a pas été validée contre la clé publique (beta)
 - Lecture de la donnée brute JSON
