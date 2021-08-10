@@ -27,7 +27,7 @@
     "loadQRData":"Load QR code (PNG, JPEG, PDF)",
     "privacySecurityNotice":"Data privacy and security notice",
     "startupGuide":"This application allows you to decode the COVID-19 vaccination QR codes of Quebec. To get started, scan a QR code with your webcam or upload an image or PDF file containing a QR code.",
-    "securityNotice1":"This application is not offical.",
+    "securityNotice1":"This application is not official.",
     "securityNotice2":"This application works client-side (static website), meaning the data you load is NOT sent to any server or any third party.",
     "securityNotice3":"You must have the explicit consent of the person(s) QR codes your read.",
     "securityNotice4":"It's forbidden to keep/store personnal data contained in the QR code without the QR code owner consent.",
