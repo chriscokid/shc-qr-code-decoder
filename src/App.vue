@@ -59,7 +59,7 @@
           <div>
             <a
               class="white--text"
-              href="https://github.com/ponahoum/Quebec-covid-19-qr-code-decoder"
+              href="https://github.com/chriscokid/shc-qr-code-decoder"
               >{{ $t("sourceCode") }}</a
             >
           </div>
