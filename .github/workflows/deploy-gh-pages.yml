@@ -18,7 +18,7 @@ jobs:
         - run: git config user.name "Check mon vax" && git config user.email "contact@checkmonvax.net"
         - run: git checkout --orphan gh-pages
         - run: npm run build
-        - run: echo "checkmonvax.net" > dist/CNAME
+#        - run: echo "checkmonvax.net" > dist/CNAME
         - run: git --work-tree dist add --all
         - run: git --work-tree dist commit -m "Deploying pages"
         - run: git push origin HEAD:gh-pages --force
